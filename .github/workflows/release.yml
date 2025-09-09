@@ -30,7 +30,7 @@ jobs:
         run: uv pip install --system build
 
       - name: Build package
-        run: uv run python -m build
+        run: uv run --system python -m build
 
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@v1.9.0
