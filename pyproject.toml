@@ -1,10 +1,10 @@
 [build-system]
-requires = ["setuptools>=61.0"]
+requires = ["setuptools>=61.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "test-bridge"
-version = "1.0.1"
+version = "1.0.1" # Pamiętaj, żeby zaktualizować wersję, jeśli TestPyPI już ma 1.0.1
 authors = [
     { name = "mateusz-kow", email = "kowalski.mateusz.1lo1@gmail.com" },
 ]
@@ -48,8 +48,9 @@ Issues = "https://github.com/mateusz-kow/bridge/issues"
 [project.scripts]
 bridge-server = "server.cli:run_server_cli"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+[tool.setuptools]
+package-dir = {"" = "src"}
+packages = ["eeg", "eeg.brainaccess", "eeg.core", "server", "server.handlers"]
 
 [tool.ruff]
 line-length = 120
@@ -61,4 +62,4 @@ line-length = 120
 [tool.mypy]
 strict = true
 ignore_missing_imports = true
-exclude = "tests/"
+exclude = ["tests/"]
