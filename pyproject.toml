@@ -1,0 +1,64 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "neuroguard-bridge"
+version = "1.0.1"
+authors = [
+    { name = "KN NEURON", email = "kn.neuron@pwr.edu.pl" },
+]
+description = "A versatile bridge application and SDK for connecting with EEG devices."
+readme = "README.md"
+requires-python = "==3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Operating System :: OS Independent",
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
+dependencies = [
+    "numpy~=1.26.4",
+]
+
+[project.optional-dependencies]
+server = [
+    "neuroguard-bridge",
+    "websockets~=12.0",
+]
+dev = [
+    "neuroguard-bridge[server]",
+    "pandas",
+    "mne~=1.6.0",
+    "matplotlib",
+    "black",
+    "ruff",
+    "pytest",
+    "pytest-asyncio",
+    "pytest-mock",
+]
+
+[project.urls]
+Homepage = "https://github.com/kn-neuron/bridge"
+Issues = "https://github.com/kn-neuron/bridge/issues"
+
+[project.scripts]
+bridge-server = "server.cli:run_server_cli"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 120
+lint.select = ["E", "F", "W", "I", "C90"]
+
+[tool.black]
+line-length = 120
+
+[tool.mypy]
+strict = true
+ignore_missing_imports = true
+exclude = "tests/"
