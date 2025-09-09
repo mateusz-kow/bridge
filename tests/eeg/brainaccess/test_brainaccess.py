@@ -2,7 +2,9 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from src.eeg.brainaccess.device import BrainaccessDevice
+brainaccess = pytest.importorskip("brainaccess")
+
+from src.eeg.brainaccess.device import BrainaccessDevice  # noqa: E402
 
 
 @pytest.fixture

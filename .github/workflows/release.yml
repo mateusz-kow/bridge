@@ -11,17 +11,25 @@ jobs:
   build-and-publish:
     name: Build and publish to PyPI
     runs-on: ubuntu-latest
+    needs: [lint_and_check, type_check, test]
     permissions:
       id-token: write
     steps:
       - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
-      - name: Install build dependencies
-        run: pip install build
+
+      - name: Install build backend
+        run: uv pip install --system build
+
       - name: Build package
-        run: python -m build
+        run: uv run python -m build
+
       - name: Publish package
         uses: pypa/gh-action-pypi-publish@v1.9.0
