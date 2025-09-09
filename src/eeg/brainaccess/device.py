@@ -21,7 +21,6 @@ connection_lock = multiprocessing.Lock()
 
 
 class BrainaccessDevice(EEGDevice):
-
     def __init__(self, logger: Logger | None = None) -> None:
         self._eeg: EEG = acquisition.EEG()
         self._manager: EEGManager | None = None

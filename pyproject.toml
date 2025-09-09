@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "neuroguard-bridge"
-version = "1.0.1"
+version = "0.0.1"
 authors = [
     { name = "KN NEURON", email = "kn.neuron@pwr.edu.pl" },
 ]
 description = "A versatile bridge application and SDK for connecting with EEG devices."
 readme = "README.md"
-requires-python = "==3.11"
+requires-python = "~=3.11"
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
@@ -39,6 +39,7 @@ dev = [
     "pytest",
     "pytest-asyncio",
     "pytest-mock",
+    "mypy",
 ]
 
 [project.urls]
