@@ -48,9 +48,8 @@ Issues = "https://github.com/mateusz-kow/bridge/issues"
 [project.scripts]
 bridge-server = "server.cli:run_server_cli"
 
-[tool.setuptools]
-package-dir = {"" = "src"}
-packages = ["eeg", "eeg.brainaccess", "eeg.core", "server", "server.handlers"]
+[tool.setuptools.packages.find]
+where = ["src"]
 
 [tool.ruff]
 line-length = 120
