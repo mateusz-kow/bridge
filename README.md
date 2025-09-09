@@ -1,4 +1,4 @@
-# Neuroguard Bridge
+# Neuroguard Bridge!
 
 [![CI](https://github.com/kn-neuron/neuroguard-bridge/actions/workflows/ci.yml/badge.svg)](https://github.com/kn-neuron/neuroguard-bridge/actions/workflows/ci.yml)
 [![PyPI version](https://badge.fury.io/py/neuroguard-bridge.svg)](https://badge.fury.io/py/neuroguard-bridge)
