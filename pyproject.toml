@@ -3,10 +3,10 @@ requires = ["setuptools>=61.0"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "neuroguard-bridge"
+name = "test-bridge"
 version = "0.0.1"
 authors = [
-    { name = "KN NEURON", email = "kn.neuron@pwr.edu.pl" },
+    { name = "mateusz-kow", email = "kowalski.mateusz.1lo1@gmail.com" },
 ]
 description = "A versatile bridge application and SDK for connecting with EEG devices."
 readme = "README.md"
@@ -26,11 +26,10 @@ dependencies = [
 
 [project.optional-dependencies]
 server = [
-    "neuroguard-bridge",
     "websockets~=12.0",
 ]
 dev = [
-    "neuroguard-bridge[server]",
+    "test-bridge[server]",
     "pandas",
     "mne~=1.6.0",
     "matplotlib",
@@ -43,8 +42,8 @@ dev = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/kn-neuron/bridge"
-Issues = "https://github.com/kn-neuron/bridge/issues"
+Homepage = "https://github.com/mateusz-kow/bridge"
+Issues = "https://github.com/mateusz-kow/bridge/issues"
 
 [project.scripts]
 bridge-server = "server.cli:run_server_cli"
