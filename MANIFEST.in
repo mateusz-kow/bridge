@@ -1,0 +1,12 @@
+# Include the source code
+graft src
+
+# Include project metadata files
+include pyproject.toml
+include README.md
+include README_dev.md
+
+# Exclude unwanted directories from the sdist
+prune tests
+prune .github
+prune .venv
