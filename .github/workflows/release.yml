@@ -1,22 +1,24 @@
-name: Publish to PyPI
+name: Publish to TestPyPI
 
 on:
   workflow_run:
-    workflows: ["CI"]
+    workflows: ["CI"]   # dokładna nazwa Twojego workflow CI
     types:
       - completed
 
 jobs:
   build-and-publish:
-    name: Build and publish to PyPI
+    name: Build and publish to TestPyPI
     runs-on: ubuntu-latest
+    # odpala się tylko jeśli CI zakończyło się sukcesem i push jest na master
     if: |
       github.event.workflow_run.conclusion == 'success' &&
-      (github.ref == 'refs/heads/master')
+      github.ref == 'refs/heads/master'
     permissions:
       id-token: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repo
+        uses: actions/checkout@v4
 
       - name: Install uv
         uses: astral-sh/setup-uv@v3
@@ -26,15 +28,19 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install build backend
-        run: uv pip install build
-
-      - name: Setup venv
+      # Tworzymy venv zarządzany przez uv
+      - name: Setup uv venv
         run: uv venv
 
+      # Instalacja narzędzi build w uv venv
+      - name: Install build backend
+        run: uv pip install build setuptools wheel
+
+      # Build paczki w venv uv
       - name: Build package
         run: uv run python -m build
 
+      # Publikacja na TestPyPI
       - name: Publish package to TestPyPI
         uses: pypa/gh-action-pypi-publish@v1.9.0
         with:
