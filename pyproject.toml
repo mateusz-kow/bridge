@@ -29,7 +29,7 @@ server = [
     "websockets~=12.0",
 ]
 dev = [
-    "test-bridge[server]",
+    "websockets~=12.0",
     "pandas",
     "mne~=1.6.0",
     "matplotlib",
