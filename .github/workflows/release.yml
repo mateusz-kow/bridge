@@ -10,9 +10,9 @@ jobs:
   build-and-publish:
     name: Build and publish to TestPyPI
     runs-on: ubuntu-latest
-    if: |
-      github.event.workflow_run.conclusion == 'success' &&
-      github.ref == 'refs/heads/main'
+#    if: |
+#      github.event.workflow_run.conclusion == 'success' &&
+#      github.ref == 'refs/heads/main'
     permissions:
       id-token: write
     steps:
