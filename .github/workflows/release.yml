@@ -25,10 +25,10 @@ jobs:
         uses: astral-sh/setup-uv@v3
 
       - name: Install build and publish tools
-        run: uv pip install --system hatchling build twine
+        run: uv pip install --system hatchling twine
 
       - name: Build package
-        run: uv run python -m build
+        run: uv run hatchling build
 
       - name: Publish package to TestPyPI
         run: uv run twine upload --repository testpypi dist/*
