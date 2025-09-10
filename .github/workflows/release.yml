@@ -24,14 +24,14 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
+      # This step is optional but good practice
+      - name: Install build tool
+        run: pip install build
 
-      - name: Install build dependencies
-        run: uv add build hatchling
-
+      # This step no longer needs `uv add...` or `uv run`.
+      # It will use the `build` command we just installed.
       - name: Build package
-        run: uv run python -m build
+        run: python -m build
 
       - name: Publish package to TestPyPI
         uses: pypa/gh-action-pypi-publish@v1.9.0

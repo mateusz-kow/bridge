@@ -4,13 +4,13 @@ build-backend = "hatchling.build"
 
 [project]
 name = "test-bridge"
-version = "1.0.2" # Pamiętaj, żeby zaktualizować wersję, jeśli TestPyPI już ma 1.0.1
+version = "1.0.2"
 authors = [
     { name = "mateusz-kow", email = "kowalski.mateusz.1lo1@gmail.com" },
 ]
 description = "A versatile bridge application and SDK for connecting with EEG devices."
 readme = "README.md"
-requires-python = "~=3.11.0"
+requires-python = ">=3.11" # Using >= is often more flexible than ~=
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.11",
@@ -21,8 +21,10 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-    "build>=1.3.0",
-    "hatchling>=1.27.0",
+    # It's not typical to include build tools as runtime dependencies.
+    # Users of your library don't need to build it.
+    # "build>=1.3.0",
+    # "hatchling>=1.27.0",
     "numpy~=1.26.4",
 ]
 
@@ -41,6 +43,9 @@ dev = [
     "pytest-asyncio",
     "pytest-mock",
     "mypy",
+    # Add your build tools here for development environments
+    "build",
+    "twine",
 ]
 
 [project.urls]
@@ -50,8 +55,11 @@ Issues = "https://github.com/mateusz-kow/bridge/issues"
 [project.scripts]
 bridge-server = "server.cli:run_server_cli"
 
-[tool.setuptools.packages.find]
-where = ["src"]
+# --- CORRECTED HATCH CONFIGURATION ---
+# This is the standard way to tell hatchling where your package code is.
+[tool.hatch.build]
+packages = ["src/test_bridge"]
+# --- END CORRECTION ---
 
 [tool.ruff]
 line-length = 120
@@ -66,6 +74,3 @@ namespace_packages = true
 strict = true
 ignore_missing_imports = true
 exclude = ["tests/"]
-
-[tool.hatch.build.targets.wheel]
-packages = ["src/test_bridge"]
