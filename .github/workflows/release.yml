@@ -30,6 +30,9 @@ jobs:
       - name: Setup venv
         run: uv venv
 
+      - name : Activate venv
+        run: source .venv/bin/activate
+
       - name: Install build tool
         run: uv pip install hatchling twine
 
