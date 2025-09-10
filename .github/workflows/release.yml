@@ -27,6 +27,9 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Setup venv
+        run: uv venv
+
       - name: Install build tool
         run: uv pip install hatchling twine
 
