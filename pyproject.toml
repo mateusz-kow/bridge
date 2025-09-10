@@ -50,8 +50,11 @@ Issues = "https://github.com/mateusz-kow/bridge/issues"
 [project.scripts]
 bridge-server = "server.cli:run_server_cli"
 
-# NO [tool.hatch.build] SECTION IS NEEDED.
-# Hatch will automatically detect the src/test_bridge directory.
+[tool.hatch.build]
+packages = [
+  "src/eeg",
+  "src/server"
+]
 
 [tool.ruff]
 line-length = 120
