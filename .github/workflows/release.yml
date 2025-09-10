@@ -10,37 +10,41 @@ jobs:
   build-and-publish:
     name: Build and publish to TestPyPI
     runs-on: ubuntu-latest
-#    if: |
+#    if: | # Możesz to odkomentować, gdy wszystko będzie działać
 #      github.event.workflow_run.conclusion == 'success' &&
 #      github.ref == 'refs/heads/main'
     permissions:
-      id-token: write
+      id-token: write # To jest potrzebne, jeśli TestPyPI jest skonfigurowane jako zaufany wydawca
     steps:
       - name: Checkout repo
         uses: actions/checkout@v4
-
-      - name: Install uv
-        uses: astral-sh/setup-uv@v3
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
-      - name: Setup venv
+      - name: Install uv
+        uses: astral-sh/setup-uv@v3
+
+      - name: Create virtual environment
         run: uv venv
 
-      - name : Activate venv
-        run: source .venv/bin/activate
+      # Krok 'activate' został usunięty, bo jest bezużyteczny
 
-      - name: Install build tool
-        run: uv pip install hatchling twine
+      - name: Install build and publish tools
+        # Instalujemy 'hatch' (który zawiera 'hatchling'), a nie samo 'hatchling'
+        run: .venv/bin/uv pip install hatch twine
 
-      - name: Build package
-        run: hatchling build
+      - name: Build package with hatch
+        # Używamy poprawnej komendy 'hatch build' i podajemy do niej pełną ścieżkę
+        run: .venv/bin/hatch build
 
-      - name: Build and publish package to TestPyPI
-        run: twine upload --repository testpypi dist/*
+      - name: Publish package to TestPyPI
+        # Używamy pełnej ścieżki do 'twine'
+        run: .venv/bin/twine upload --repository testpypi dist/*
         env:
+          # Upewnij się, że w ustawieniach repozytorium na GitHubie
+          # masz dodany sekret o nazwie TEST_PYPI_API_TOKEN
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}
