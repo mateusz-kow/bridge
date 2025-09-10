@@ -19,6 +19,9 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
+      - name: Check file encoding
+        run: file pyproject.toml
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
