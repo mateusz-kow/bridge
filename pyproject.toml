@@ -3,7 +3,7 @@ packages = ["src/test_bridge"]
 
 [project]
 name = "test-bridge"
-version = "1.0.4"
+version = "1.0.5"
 authors = [
     { name = "mateusz-kow", email = "kowalski.mateusz.1lo1@gmail.com" },
 ]
