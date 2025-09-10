@@ -31,7 +31,7 @@ jobs:
         run: uv run hatchling build
 
       - name: Publish package to TestPyPI
-        run: uv run twine upload --repository testpypi dist/*
+        run: uv run twine upload --repository testpypi dist/* --verbose
         env:
           TWINE_USERNAME: __token__
           TWINE_PASSWORD: ${{ secrets.TEST_PYPI_API_TOKEN }}

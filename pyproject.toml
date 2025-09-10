@@ -9,7 +9,7 @@ packages = [
 ]
 
 [project]
-name = "neuroguard-bridge"
+name = "test-bridge"
 version = "1.0.7"
 authors = [
     { name = "mateusz-kow", email = "kowalski.mateusz.1lo1@gmail.com" },
