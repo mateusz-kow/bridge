@@ -34,7 +34,7 @@ jobs:
 
       - name: Install build and publish tools
         # Instalujemy 'hatch' (który zawiera 'hatchling'), a nie samo 'hatchling'
-        run: .venv/bin/uv pip install hatch twine
+        run: uv pip install hatch twine
 
       - name: Build package with hatch
         # Używamy poprawnej komendy 'hatch build' i podajemy do niej pełną ścieżkę
