@@ -3,16 +3,13 @@ name: Publish to TestPyPI
 on:
   workflow_run:
     workflows: ["CI"]
-    types:
-      - completed
+    types: [completed]
+    branches: [master]
 
 jobs:
   build-and-publish:
     name: Build and publish to TestPyPI
     runs-on: ubuntu-latest
-    # if: |
-    #   github.event.workflow_run.conclusion == 'success' &&
-    #   github.ref == 'refs/heads/main'
     permissions:
       id-token: write
     steps:
@@ -28,7 +25,7 @@ jobs:
         uses: astral-sh/setup-uv@v3
 
       - name: Install build and publish tools
-        run: uv pip install hatchling build twine
+        run: uv pip install --system hatchling build twine
 
       - name: Build package
         run: uv run python -m build
