@@ -9,7 +9,6 @@ on:
 jobs:
   build-and-publish:
     name: Build and publish to TestPyPI
-    # MUST be ubuntu-latest for the pypi-publish action
     runs-on: ubuntu-latest
     if: |
       github.event.workflow_run.conclusion == 'success' &&
