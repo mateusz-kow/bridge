@@ -21,7 +21,7 @@ classifiers = [
     "Topic :: Scientific/Engineering",
 ]
 dependencies = [
-    "numpy~=1.26.4",
+    "numpy<=2.0.0",
 ]
 
 [project.optional-dependencies]
@@ -50,12 +50,8 @@ Issues = "https://github.com/mateusz-kow/bridge/issues"
 [project.scripts]
 bridge-server = "server.cli:run_server_cli"
 
-# --- THIS IS THE KEY CHANGE ---
-# This tells setuptools to look inside the 'src' directory
-# and automatically find all packages (like 'eeg' and 'server').
 [tool.setuptools.packages.find]
 where = ["src"]
-# --- END CHANGE ---
 
 
 [tool.ruff]
