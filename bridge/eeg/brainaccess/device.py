@@ -7,6 +7,7 @@ from brainaccess.core.eeg_manager import EEGManager
 from brainaccess.utils import acquisition
 from brainaccess.utils.acquisition import EEG
 
+from ..core import DeviceData, EEGArray, EEGDevice
 from .cap_factory import get_cap_from_model, get_cap_from_name
 from .config import (
     BRAINACCESS_MANUFACTURER,
@@ -15,7 +16,6 @@ from .config import (
     DEFAULT_DEVICE_PORT,
     IMPEDANCE_MEASUREMENT_TIME,
 )
-from ..core import DeviceData, EEGArray, EEGDevice
 
 connection_lock = multiprocessing.Lock()
 
