@@ -1,4 +1,4 @@
-from .eeg import DeviceData, EEGDevice, close, init
+from .eeg import DeviceData, EEGConnector, EEGDevice, close, init
 from .server import BackendHandler, BridgeServer, FrontendHandler, run_server_cli
 
 __all__ = [
@@ -10,4 +10,5 @@ __all__ = [
     "BackendHandler",
     "run_server_cli",
     "BridgeServer",
+    "EEGConnector",
 ]

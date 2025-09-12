@@ -9,7 +9,7 @@ packages = [
 
 [project]
 name = "test-bridge"
-version = "1.0.8"
+version = "1.0.9"
 authors = [
     { name = "mateusz-kow", email = "kowalski.mateusz.1lo1@gmail.com" },
 ]
@@ -46,6 +46,7 @@ dev = [
     "mypy",
     "hatch",
     "twine",
+    "pre-commit",
 ]
 
 [project.urls]

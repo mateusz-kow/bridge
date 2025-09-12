@@ -1,4 +1,4 @@
-from unittest.mock import MagicMock, Mock
+from unittest.mock import MagicMock
 
 import pytest
 
@@ -53,7 +53,7 @@ def test_connector_fails_if_all_devices_fail():
     """Test that the connector raises RuntimeError if all connections fail."""
     device_classes = [MockFailingDevice, MockFailingDevice]
     connector = EEGConnector(device_classes=device_classes)
-    with pytest.raises(RuntimeError, match="Failed to connect to any device"):
+    with pytest.raises(RuntimeError, match="Failed to connect to any available device."):
         connector.connect()
 
 
@@ -63,7 +63,11 @@ def test_connector_methods_delegate_to_device():
     mock_device.get_output = MagicMock(return_value=[1, 2, 3])
     mock_device.get_device_data = MagicMock(return_value="SuccessData")
 
-    connector = EEGConnector(device_classes=[Mock(return_value=mock_device)])
+    mock_device_class = MagicMock(spec=MockSuccessfulDevice)
+    mock_device_class.return_value = mock_device
+    mock_device_class.__name__ = "MockSuccessfulDevice"
+
+    connector = EEGConnector(device_classes=[mock_device_class])
     connector.connect()
 
     assert connector.get_output(duration=5.0) == [1, 2, 3]
@@ -86,9 +90,11 @@ def test_connector_as_context_manager():
     mock_device.connect = MagicMock()
     mock_device.disconnect = MagicMock()
 
-    device_classes = [Mock(return_value=mock_device)]
+    mock_device_class = MagicMock(spec=MockSuccessfulDevice)
+    mock_device_class.return_value = mock_device
+    mock_device_class.__name__ = "MockSuccessfulDevice"
 
-    with EEGConnector(device_classes=device_classes) as connector:
+    with EEGConnector(device_classes=[mock_device_class]) as connector:
         assert connector._eeg_device is not None
         mock_device.connect.assert_called_once()
         mock_device.disconnect.assert_not_called()

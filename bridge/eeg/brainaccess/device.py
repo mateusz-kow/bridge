@@ -90,7 +90,7 @@ class BrainaccessDevice(EEGDevice):
             if port >= count:
                 raise ConnectionError(f"Can't connect on port {port}, found {count} eeg.")
 
-            self._device_name = core.get_device_name(port)
+            self._device_name = core.get_device_name(port) or "Unknown Device"
             self._mac_address = core.get_device_address(port)
             self._cap = get_cap_from_name(self._device_name)
 

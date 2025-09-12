@@ -2,14 +2,14 @@ from logging import Logger, getLogger
 from types import TracebackType
 from typing import Iterable
 
-from . import device_classes as devices
+from .config import DEVICE_CLASSES
 from .core import DeviceData, EEGArray, EEGDevice
 
 
 class EEGConnector:
     def __init__(
         self,
-        device_classes: Iterable[type[EEGDevice]] = devices,
+        device_classes: Iterable[type[EEGDevice]] = DEVICE_CLASSES,
         output_file: str | None = None,
         logger: Logger = getLogger(__name__),
     ):
@@ -34,14 +34,12 @@ class EEGConnector:
                 device = device_class()
                 device.connect()
                 self._eeg_device = device
+                self._logger.info(f"Successfully connected using {device_class.__name__}.")
                 return
             except Exception as e:
                 self._logger.warning(f"Failed to connect using {device_class.__name__}: {e}")
-                pass
 
-        raise RuntimeError(
-            f"Failed to connect to any device from {', '.join([cls.__name__ for cls in self._device_classes])}."
-        )
+        raise RuntimeError("Failed to connect to any available device.")
 
     def disconnect(self) -> None:
         device = self._ensure_connected()
