@@ -4,13 +4,12 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build]
 packages = [
-  "src/eeg",
-  "src/server"
+  "bridge"
 ]
 
 [project]
 name = "test-bridge"
-version = "1.0.7"
+version = "1.0.8"
 authors = [
     { name = "mateusz-kow", email = "kowalski.mateusz.1lo1@gmail.com" },
 ]

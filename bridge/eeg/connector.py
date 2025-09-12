@@ -2,8 +2,8 @@ from logging import Logger, getLogger
 from types import TracebackType
 from typing import Iterable
 
-from src.eeg import device_classes as devices
-from src.eeg.core import DeviceData, EEGArray, EEGDevice
+from . import device_classes as devices
+from .core import DeviceData, EEGArray, EEGDevice
 
 
 class EEGConnector:

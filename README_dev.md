@@ -59,7 +59,7 @@ Adding a new device is the most common way to contribute. Follow these steps:
     -   Optionally, you can also implement `get_impedance`.
 
     ```python
-    # src/eeg/mydevice/device.py
+    # bridge/eeg/mydevice/device.py
     from eeg.core import DeviceData, EEGArray, EEGDevice
     from mydevice_sdk import SomeDeviceAPI
 
@@ -89,7 +89,7 @@ Adding a new device is the most common way to contribute. Follow these steps:
     In `src/eeg/__init__.py`, add a `try...except ImportError` block to register your new device class. This ensures the bridge runs even if the new device's SDK isn't installed.
 
     ```python
-    # src/eeg/__init__.py
+    # bridge/eeg/__init__.py
 
     # ... existing imports ...
 
@@ -142,5 +142,5 @@ ruff check --fix .
 
 We use `mypy` for static type checking.
 ```bash
-mypy src
+mypy bridge
 ```

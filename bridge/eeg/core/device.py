@@ -2,8 +2,8 @@ from abc import ABC, abstractmethod
 from logging import Logger, getLogger
 from types import TracebackType
 
-from src.eeg.core.device_data import DeviceData
-from src.eeg.core.typing import EEGArray
+from .device_data import DeviceData
+from .typing import EEGArray
 
 
 class EEGDevice(ABC):

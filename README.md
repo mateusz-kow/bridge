@@ -57,7 +57,7 @@ Use the `EEGConnector` to interact with a connected device in your Python code.
 
 ```python
 import numpy as np
-from src.eeg import EEGConnector, init, close
+from bridge.eeg import EEGConnector, init, close
 
 # Initialize all installed device SDKs
 init()

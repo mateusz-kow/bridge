@@ -3,8 +3,8 @@ import asyncio
 import logging
 import sys
 
-from src import eeg
-from src.server.server import BridgeServer
+from .. import eeg
+from .server import BridgeServer
 
 
 def run_server_cli() -> None:

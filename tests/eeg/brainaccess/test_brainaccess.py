@@ -4,22 +4,22 @@ import pytest
 
 brainaccess = pytest.importorskip("brainaccess")
 
-from src.eeg.brainaccess.device import BrainaccessDevice  # noqa: E402
+from bridge.eeg.brainaccess.device import BrainaccessDevice  # noqa: E402
 
 
 @pytest.fixture
 def mock_brainaccess_sdk(monkeypatch):
     """Mocks the brainaccess SDK components used by BrainaccessDevice."""
     mock_core = MagicMock()
-    monkeypatch.setattr("src.eeg.brainaccess.device.core", mock_core)
+    monkeypatch.setattr("bridge.eeg.brainaccess.device.core", mock_core)
 
     mock_acquisition = MagicMock()
     mock_eeg_instance = MagicMock()
     mock_acquisition.EEG.return_value = mock_eeg_instance
-    monkeypatch.setattr("src.eeg.brainaccess.device.acquisition", mock_acquisition)
+    monkeypatch.setattr("bridge.eeg.brainaccess.device.acquisition", mock_acquisition)
 
     mock_eeg_manager_instance = MagicMock()
-    monkeypatch.setattr("src.eeg.brainaccess.device.EEGManager", lambda: mock_eeg_manager_instance)
+    monkeypatch.setattr("bridge.eeg.brainaccess.device.EEGManager", lambda: mock_eeg_manager_instance)
 
     mock_core.EEGManager.return_value = mock_eeg_manager_instance
 
@@ -84,7 +84,7 @@ def test_connection_lock_is_used(mock_brainaccess_sdk):
     mock_brainaccess_sdk.get_device_count.return_value = 0
     device = BrainaccessDevice()
 
-    with patch("src.eeg.brainaccess.device.connection_lock") as mock_lock:
+    with patch("bridge.eeg.brainaccess.device.connection_lock") as mock_lock:
         with pytest.raises(ConnectionError):
             device.connect()
         mock_lock.__enter__.assert_called_once()

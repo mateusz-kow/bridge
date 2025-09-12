@@ -3,15 +3,15 @@ from unittest.mock import AsyncMock, MagicMock
 
 import pytest
 
-from src.eeg.core import DeviceData
-from src.server.handlers.frontend import FrontendHandler
+from bridge.eeg.core import DeviceData
+from bridge.server.handlers.frontend import FrontendHandler
 
 
 @pytest.fixture
 def mock_eeg_connector(monkeypatch):
     """Fixture to mock the EEGConnector."""
     mock = MagicMock()
-    monkeypatch.setattr("src.server.handlers.frontend.EEGConnector", lambda: mock)
+    monkeypatch.setattr("bridge.server.handlers.frontend.EEGConnector", lambda: mock)
     return mock
 
 

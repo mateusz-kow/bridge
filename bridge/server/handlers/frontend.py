@@ -6,8 +6,8 @@ from typing import Any
 
 from websockets.server import WebSocketServerProtocol
 
-from src.eeg.connector import EEGConnector
-from src.server.handlers.backend import BackendHandler
+from bridge.eeg.connector import EEGConnector
+from bridge.server.handlers.backend import BackendHandler
 
 
 class FrontendHandler:

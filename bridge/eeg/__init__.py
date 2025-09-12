@@ -1,7 +1,7 @@
 from logging import getLogger
 from typing import Callable
 
-from src.eeg.core import DeviceData, EEGArray, EEGDevice
+from .core import DeviceData, EEGArray, EEGDevice
 
 logger = getLogger(__name__)
 

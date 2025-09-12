@@ -2,8 +2,8 @@ from unittest.mock import MagicMock, Mock
 
 import pytest
 
-from src.eeg.connector import EEGConnector
-from src.eeg.core import EEGDevice
+from bridge.eeg.connector import EEGConnector
+from bridge.eeg.core import EEGDevice
 
 
 class MockSuccessfulDevice(EEGDevice):

@@ -3,7 +3,7 @@ import ssl
 
 import websockets
 
-from src.server.handlers import BackendHandler, FrontendHandler
+from .handlers import BackendHandler, FrontendHandler
 
 
 class BridgeServer:

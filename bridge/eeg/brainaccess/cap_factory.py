@@ -1,4 +1,4 @@
-from src.eeg.brainaccess.typing import Cap
+from .typing import Cap
 
 DEVICE_TO_CAP: dict[str, Cap] = {
     "MAXI": {
